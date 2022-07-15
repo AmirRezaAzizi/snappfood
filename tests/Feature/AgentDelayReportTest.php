@@ -36,7 +36,7 @@ class AgentDelayReportTest extends TestCase
 
         $response->assertStatus(200);
 
-        $orderId = $response->json()['id'];
+        $orderId = $response->json()['data']['id'];
 
         $this->assertTrue($orderId == $order->id);
     }

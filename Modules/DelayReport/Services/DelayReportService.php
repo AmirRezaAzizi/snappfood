@@ -11,6 +11,7 @@ use Modules\DelayReport\Entities\DelayReport;
 use Modules\DelayReport\Interfaces\DelayReportRepositoryInterface;
 use Modules\Order\Interfaces\DelayQueueRepositoryInterface;
 use Modules\Order\Interfaces\OrderRepositoryInterface;
+use Modules\Order\Transformers\OrderResource;
 
 class DelayReportService
 {
@@ -106,7 +107,9 @@ class DelayReportService
         $orderKey = "order-delay-order-$orderId";
         Cache::put($orderKey, $agentKey);
 
-        return $this->orderRepository->with('vendor')->getById($orderId);
+        $order = $this->orderRepository->with('vendor')->getById($orderId);
+
+        return new OrderResource($order);
     }
 
 }
