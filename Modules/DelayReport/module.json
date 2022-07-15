@@ -1,0 +1,13 @@
+{
+    "name": "DelayReport",
+    "alias": "delayreport",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\DelayReport\\Providers\\DelayReportServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
