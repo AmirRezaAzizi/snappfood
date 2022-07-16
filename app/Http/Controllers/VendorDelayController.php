@@ -18,8 +18,8 @@ class VendorDelayController extends Controller
             ->join('orders', 'orders.vendor_id', '=', 'vendors.id')
             ->whereNotNull('orders.delivery_time')
             ->whereNotNull('orders.delivered_at')
-            ->selectRaw('vendors.id, vendors.name, SUM(TIMESTAMPDIFF(MINUTE,orders.delivery_time,orders.delivered_at)) AS minutes')
-            ->orderByRaw('minutes DESC')
+            ->selectRaw('vendors.id, vendors.name, SUM(TIMESTAMPDIFF(MINUTE,orders.delivery_time,orders.delivered_at)) AS delay')
+            ->orderByRaw('delay DESC')
             ->groupBy('orders.vendor_id')
             ->paginate(request('paginate'));
 

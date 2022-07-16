@@ -10,7 +10,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::with('vendor', 'trip')->get();
+        $orders = Order::with('vendor', 'trip')->paginate(\request('paginate'));
 
         return new OrderCollection($orders);
     }
