@@ -2,12 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Modules\Agent\Database\Seeders\AgentDatabaseSeeder;
-use Modules\Order\Database\Seeders\OrderDatabaseSeeder;
-use Modules\Trip\Database\Seeders\TripDatabaseSeeder;
-use Modules\Vendor\Database\Seeders\VendorDatabaseSeeder;
+use Database\Seeders\AgentDatabaseSeeder;
+use Database\Seeders\OrderDatabaseSeeder;
+use Database\Seeders\TripDatabaseSeeder;
+use Database\Seeders\VendorDatabaseSeeder;
 
 class DatabaseSeeder extends Seeder
 {

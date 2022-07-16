@@ -9,8 +9,7 @@
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^2.14.1",
-        "laravel/tinker": "^2.7",
-        "nwidart/laravel-modules": "^9.0"
+        "laravel/tinker": "^2.7"
     },
     "require-dev": {
         "brianium/paratest": "^6.6",

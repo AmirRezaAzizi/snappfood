@@ -2,10 +2,9 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Redis;
-use Modules\Order\Entities\Order;
-use Modules\Order\Repositories\RedisDelayQueueRepository;
+use App\Models\Order;
+use App\Repositories\RedisDelayQueueRepository;
 use Tests\TestCase;
 
 class AgentDelayReportTest extends TestCase

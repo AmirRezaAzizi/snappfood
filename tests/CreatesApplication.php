@@ -3,7 +3,7 @@
 namespace Tests;
 
 use Illuminate\Contracts\Console\Kernel;
-use Modules\Order\Entities\Order;
+use App\Models\Order;
 
 trait CreatesApplication
 {

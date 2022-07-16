@@ -2,11 +2,8 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Modules\DelayReport\Interfaces\DelayReportRepositoryInterface;
-use Modules\Order\Entities\Order;
-use Modules\Order\Repositories\RedisDelayQueueRepository;
+use App\Models\Order;
+use App\Repositories\RedisDelayQueueRepository;
 use Tests\TestCase;
 
 class CustomerDelayReportTest extends TestCase
