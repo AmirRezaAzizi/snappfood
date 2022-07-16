@@ -51,10 +51,14 @@ abstract class EloquentBaseRepository
      */
     public function with($relations)
     {
-
         $this->model = $this->model->with($relations);
 
         return $this;
+    }
+
+    public function getByIdWith(int $orderId, array|string $relation)
+    {
+        return $this->with($relation)->getById($orderId);
     }
 
 }

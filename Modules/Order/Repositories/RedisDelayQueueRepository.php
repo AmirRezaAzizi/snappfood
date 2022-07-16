@@ -4,30 +4,57 @@
 namespace Modules\Order\Repositories;
 
 
+use http\Exception;
+use Modules\Base\Exceptions\CustomException;
 use Illuminate\Support\Facades\Redis;
 use Modules\Order\Interfaces\DelayQueueRepositoryInterface;
 
 class RedisDelayQueueRepository implements DelayQueueRepositoryInterface
 {
-    private $key = 'order-delay-reports';
+    private string $key = 'order_delay_reports';
 
-    public function push($value)
+    /**
+     * @param $value
+     * @return bool|\Exception
+     * @throws \Exception
+     */
+    public function push($value): bool|\Exception
     {
+        // check if not add duplicate item to the queue
+        if ($this->queueHasKey($value)) {
+            throw new \Exception();
+        }
+
         return Redis::rpush($this->key, $value);
     }
 
-    public function pop()
+    /**
+     * @return mixed
+     */
+    public function pop(): int
     {
         return Redis::lpop($this->key);
     }
 
-    public function getList()
+    /**
+     * @return mixed
+     */
+    public function getList(): array
     {
         return Redis::lRange($this->key, 0, -1);
     }
 
-    public function deleteList()
+    /**
+     * @return mixed
+     */
+    public function deleteList(): bool
     {
         return Redis::del($this->key);
     }
+
+    protected function queueHasKey($value): bool
+    {
+        return in_array($value, $this->getList());
+    }
+
 }

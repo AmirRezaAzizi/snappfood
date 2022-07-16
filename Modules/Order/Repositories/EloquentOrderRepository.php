@@ -15,4 +15,5 @@ class EloquentOrderRepository extends EloquentBaseRepository implements OrderRep
         parent::__construct($order);
     }
 
+
 }

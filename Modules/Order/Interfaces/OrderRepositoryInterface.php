@@ -12,5 +12,5 @@ interface OrderRepositoryInterface
     public function update(array $data, $id, $attribute = "id");
     public function delete($id);
     public function paginate($perPage = 15, $columns = array('*'));
-    public function with($relations);
+    public function getByIdWith(int $orderId, array|string $relation);
 }

@@ -40,7 +40,8 @@ class DelayReportServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);
-        $this->app->bind(DelayReportRepositoryInterface::class, EloquentDelayReportRepository::class);
+        $this->app->singleton(DelayReportRepositoryInterface::class, EloquentDelayReportRepository::class);
+        $this->app->register(DelayReportEventServiceProvider::class);
     }
 
     /**

@@ -2,14 +2,17 @@
 
 namespace Modules\Order\Providers;
 
+use Illuminate\Cache\RedisLock;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 use Modules\Order\Entities\Order;
 use Modules\Order\Interfaces\DelayQueueRepositoryInterface;
+use Modules\Order\Interfaces\DelayReportLockRepositoryInterface;
 use Modules\Order\Interfaces\OrderRepositoryInterface;
 use Modules\Order\Observers\OrderObserver;
 use Modules\Order\Repositories\EloquentOrderRepository;
 use Modules\Order\Repositories\RedisDelayQueueRepository;
+use Modules\Order\Repositories\RedisReportLockRepository;
 
 class OrderServiceProvider extends ServiceProvider
 {
@@ -44,8 +47,9 @@ class OrderServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);
-        $this->app->bind(OrderRepositoryInterface::class, EloquentOrderRepository::class);
-        $this->app->bind(DelayQueueRepositoryInterface::class, RedisDelayQueueRepository::class);
+        $this->app->singleton(OrderRepositoryInterface::class, EloquentOrderRepository::class);
+        $this->app->singleton(DelayQueueRepositoryInterface::class, RedisDelayQueueRepository::class);
+        $this->app->singleton(DelayReportLockRepositoryInterface::class, RedisReportLockRepository::class);
 
     }
 

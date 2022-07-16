@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Redis;
 use Modules\Order\Entities\Order;
 use Modules\Order\Repositories\RedisDelayQueueRepository;
 use Tests\TestCase;
@@ -21,8 +22,8 @@ class AgentDelayReportTest extends TestCase
 
     public function test_agent_get_order_to_check()
     {
-        // flush queue
-        $this->delayReportRepository->deleteList();
+        // flush redis
+        Redis::flushDB();
 
         $order = Order::factory()->create([
             'delivery_time' => now()->subMinutes(30)

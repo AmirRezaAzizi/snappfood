@@ -3,29 +3,30 @@
 namespace Modules\DelayReport\Http\Controllers;
 
 use Illuminate\Routing\Controller;
+use Modules\Base\Traits\ApiResponse;
 use Modules\DelayReport\Http\Requests\DelayReportRequest;
 use Modules\DelayReport\Services\DelayReportService;
+use Modules\DelayReport\Services\ResolveEstimationTime;
 
 
 class DelayReportController extends Controller
 {
-    protected DelayReportService $delayReportService;
+    use ApiResponse;
 
-    public function __construct(DelayReportService $delayReportService)
+    public function __construct(protected ResolveEstimationTime $resolveEstimationTime, protected DelayReportService $delayReportService)
     {
-        $this->delayReportService = $delayReportService;
-
+        //
     }
 
     /**
      * Display a listing of the resource.
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function get()
     {
         $agentId = 1;
 
-        return $this->delayReportService->get($agentId);
+        return  $this->delayReportService->get($agentId);
     }
 
     /**
@@ -35,7 +36,15 @@ class DelayReportController extends Controller
      */
     public function store(DelayReportRequest $request)
     {
-        return $this->delayReportService->handle($request->order_id);
+        $time = $this->resolveEstimationTime->get($request->order_id);
+
+        if ($time) {
+            $message = "Your order will reach you in $time minutes.";
+        } else {
+            $message = "Your order has been queued for review by support team.";
+        }
+
+        return $this->success([], $message);
     }
 
 }

@@ -15,4 +15,4 @@ use Illuminate\Http\Request;
 
 Route::post('customer/delay-report', [\Modules\DelayReport\Http\Controllers\DelayReportController::class, 'store']);
 
-Route::get('agent/delay-report', [\Modules\DelayReport\Http\Controllers\DelayReportController::class, 'index']);
+Route::get('agent/delay-report', [\Modules\DelayReport\Http\Controllers\DelayReportController::class, 'get']);
