@@ -39,6 +39,7 @@ class DelayReportService
         }
 
         $this->delayReportLockRepository->lock('agent', $agentId);
+        $this->delayReportLockRepository->lock('order', $orderId);
 
         $order = $this->orderRepository->getByIdWith($orderId, 'vendor');
 

@@ -7,7 +7,7 @@ namespace App\Repositories;
 use Illuminate\Support\Facades\Redis;
 use App\Interfaces\DelayReportLockRepositoryInterface;
 
-class RedisReportLockRepository implements DelayReportLockRepositoryInterface
+class RedisDelayReportLockRepository implements DelayReportLockRepositoryInterface
 {
     private string $prefix = 'delay_report';
 

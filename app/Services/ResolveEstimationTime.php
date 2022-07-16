@@ -25,7 +25,7 @@ class ResolveEstimationTime
         $order = $this->orderRepository->getByIdWith($orderId, 'trip');
 
         if ($order->delivery_time >= now()) {
-            throw new CustomException('Delay Report is allowed only after the preparation time is over.', 403);
+            throw new CustomException('Delay Report is not allowed before the preparation time is over.', 403);
         }
 
         if ($this->delayReportLockRepository->isLock('order', $orderId)) {

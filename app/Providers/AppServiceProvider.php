@@ -10,7 +10,7 @@ use App\Interfaces\DelayReportLockRepositoryInterface;
 use App\Interfaces\OrderRepositoryInterface;
 use App\Repositories\EloquentOrderRepository;
 use App\Repositories\RedisDelayQueueRepository;
-use App\Repositories\RedisReportLockRepository;
+use App\Repositories\RedisDelayReportLockRepository;
 use App\Models\Trip;
 use App\Observers\TripObserver;
 
@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton(OrderRepositoryInterface::class, EloquentOrderRepository::class);
         $this->app->singleton(DelayQueueRepositoryInterface::class, RedisDelayQueueRepository::class);
-        $this->app->singleton(DelayReportLockRepositoryInterface::class, RedisReportLockRepository::class);
+        $this->app->singleton(DelayReportLockRepositoryInterface::class, RedisDelayReportLockRepository::class);
         $this->app->singleton(DelayReportRepositoryInterface::class, EloquentDelayReportRepository::class);
         $this->app->register(\App\Providers\RouteServiceProvider::class);
         $this->app->register(DelayReportEventServiceProvider::class);
