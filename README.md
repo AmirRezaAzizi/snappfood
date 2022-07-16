@@ -27,7 +27,7 @@ cp .env.example .env
 ./vendor/bin/sail artisan test
 ```
 
-#APIs
+# APIs
 
 Submit a delay report from customer side:
 ``` bash
