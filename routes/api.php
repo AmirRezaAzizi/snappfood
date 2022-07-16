@@ -18,4 +18,6 @@ Route::post('customer/delay-report', [\App\Http\Controllers\DelayReportControlle
 
 Route::get('agent/delay-report', [\App\Http\Controllers\DelayReportController::class, 'get']);
 
+Route::get('admin/orders', [\App\Http\Controllers\OrderController::class, 'index']);
+
 Route::get('admin/vendors/delay-report', [\App\Http\Controllers\VendorDelayController::class, 'index']);

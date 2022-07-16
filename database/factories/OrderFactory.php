@@ -23,7 +23,7 @@ class OrderFactory extends Factory
         $deliveredRand = [now()->addMinutes(rand(60,120)), null];
         return [
             'vendor_id' => rand(1,10),
-            'delivery_time' => now()->addMinutes(rand(30,60)),
+            'delivery_time' => now()->addMinutes(rand(-30,60)),
             'delivered_at' => $deliveredRand[array_rand($deliveredRand)],
         ];
     }
